@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+            function drinkList(drinks){
+                switch(drinks){
+                    case "Iced Tea":
+                        document.getElementById("smprice").value = 18.00;
+                        document.getElementById("mdprice").value = 25.00;
+                        document.getElementById("lrprice").value = 32.00;
+                        break;
+                    case "Juice":
+                        document.getElementById("smprice").value = 28.00;
+                        document.getElementById("mdprice").value = 35.00;
+                        document.getElementById("lrprice").value = 42.00;
+                }
+            }
+            
+            function getTotal(){
+                var x = document.getElementById("ordernum").value;
+                if(document.drinksize.size[0].checked == true){
+                    if(x == ""){
+                        var x = eval(document.getElementById("ordernum").value = 1);
+                        if(document.drinksize.cb.checked == true){
+                            var a = eval(document.getElementById("smprice").value);
+                            var b = x * a;
+                            var $b = b * .20;
+                            var c = b - $b;
+                            
+                            document.getElementById("amount").value = c;
+                        }
+                        else{
+                            var a = eval(document.getElementById("smprice").value);
+                            var b = x * a;
+                            
+                            document.getElementById("amount").value = b;
+                        }
+                    }
+                    else{
+                        if(document.drinksize.cb.checked == true){
+                            var a = eval(document.getElementById("smprice").value);
+                            var b = x * a;
+                            var $b = b * .20;
+                            var c = b - $b;
+                            
+                            document.getElementById("amount").value = c;
+                        }
+                        else{
+                            var a = eval(document.getElementById("smprice").value);
+                            var b = x * a;
+                            
+                            document.getElementById("amount").value = b;
+                        }
+                    }
+                }
+                else if(document.drinksize.size[1].checked == true){
+                    if(x == ""){
+                        var x = eval(document.getElementById("ordernum").value = 1);
+                        if(document.drinksize.cb.checked == true){
+                            var a = eval(document.getElementById("mdprice").value);
+                            var b = x * a;
+                            var $b = b * .20;
+                            var c = b - $b;
+                            
+                            document.getElementById("amount").value = c;
+                        }
+                        else{
+                            var a = eval(document.getElementById("mdprice").value);
+                            var b = x * a;
+                            
+                            document.getElementById("amount").value = b;
+                        }
+                    }
+                    else{
+                        if(document.drinksize.cb.checked == true){
+                            var a = eval(document.getElementById("mdprice").value);
+                            var b = x * a;
+                            var $b = b * .20;
+                            var c = b - $b;
+                            
+                            document.getElementById("amount").value = c;
+                        }
+                        else{
+                            var a = eval(document.getElementById("mdprice").value);
+                            var b = x * a;
+                            
+                            document.getElementById("amount").value = b;
+                        }
+                    }
+                }
+                else{
+                    if(x == ""){
+                        var x = eval(document.getElementById("ordernum").value = 1);
+                        if(document.drinksize.cb.checked == true){
+                            var a = eval(document.getElementById("lrprice").value);
+                            var b = x * a;
+                            var $b = b * .20;
+                            var c = b - $b;
+                            
+                            document.getElementById("amount").value = c;
+                        }
+                        else{
+                            var a = eval(document.getElementById("lrprice").value);
+                            var b = x * a;
+                            
+                            document.getElementById("amount").value = b;
+                        }
+                    }
+                    else{
+                        if(document.drinksize.cb.checked == true){
+                            var a = eval(document.getElementById("lrprice").value);
+                            var b = x * a;
+                            var $b = b * .20;
+                            var c = b - $b;
+                            
+                            document.getElementById("amount").value = c;
+                        }
+                        else{
+                            var a = eval(document.getElementById("lrprice").value);
+                            var b = x * a;
+                            
+                            document.getElementById("amount").value = b;
+                        }
+                    }
+                }
+            }
+            
+            function getChange(){
+                var x = eval(document.getElementById("amount").value);
+                var y = eval(document.getElementById("payment").value);
+                
+                if(y<x){
+                    alert("Insufficient money!");
+                }
+                else{
+                    var z = y - x;
+                    document.getElementById("_change").value = z;
+                }
+            }
+        </script>
+    </head>
+    <body>
+        Choose Drinks: 
+        <select name="$drink" onchange="drinkList(this.value);">
+            <option>-- Select a Drink --</option>
+            <option>Iced Tea</option>
+            <option>Juice</option>
+        </select>
+        <form name="drinksize">
+        <input type="radio" name="size" id="sm"> Small <input type="text" id="smprice" disabled="disabled"><br/>
+        <input type="radio" name="size" id="md"> Medium <input type="text" id="mdprice" disabled="disabled"><br/>
+        <input type="radio" name="size" id="lr"> Large <input type="text" id="lrprice" disabled="disabled"><br/>
+        No. of Order <input type="text" id="ordernum"><br/>
+        <input type="checkbox" id="cb"> Senior Citizen (20%)<br/>
+        <input type="button" id="proceed" value="Proceed" onclick="getTotal()"><br/>
+        Press tab to render change!!!<br/>
+        Amount Due: <input type="text" id="amount" disabled="disabled"><br/>
+        Enter Payment: <input type="text" id="payment" onblur="getChange()"><br/>
+        Change Due <input type="text" id="_change" disabled="disabled">
+        </form>
+    </body>
+</html>
